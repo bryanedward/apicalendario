@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+    apiweb:
+      container_name: apiweb
+      restart: always
+      build: .
+      ports:
+        - "4500:4500"
+      links:
+        - mongodb
+      volumes:
+        - .:/usr/src/app 
+    mongodb:
+      container_name: mongodatabase
+      image: mongo:5.0
+      ports:
+        - "27017:27017"
+      logging:
+        driver: none
+      volumes:
+        - ./mongo_data:/data/db
