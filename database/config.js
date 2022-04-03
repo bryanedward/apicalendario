@@ -3,7 +3,7 @@ const { default: mongoose } = require("mongoose");
 
 const dbMongoose = async () => {
     try {
-        await mongoose.connect("mongodb://mongodb:27017/calendario",{
+        await mongoose.connect(process.env.DB_CNN,{
             useNewUrlParser: true, 
             useUnifiedTopology: true,
         }).then((item) => console.log('mongoose'))
