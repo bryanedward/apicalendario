@@ -6,19 +6,21 @@ const getEventos = async (req, res) => {
     const eventos = await event.find()
         .populate('user', 'name');
 
-    res.json({
-        ok: true,
-        eventos
-    });
+    res.json(
+        {
+            ok:true,
+            eventos
+        }
+    );
 }
 
 
 const crearEvento = async (req, res) => {
+    console.log(req.body);
     try {
         const result = new event(req.body)
         result.user = req.uid
         const eventoGuardado = await result.save()
-
         res.json({
             ok: true,
             evento: eventoGuardado
@@ -26,7 +28,7 @@ const crearEvento = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             ok: false,
-            msg: 'Hable con el administrador'
+            msg: error
         });
     }
 
