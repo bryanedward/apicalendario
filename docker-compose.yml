@@ -20,3 +20,6 @@ services:
         driver: none
       volumes:
         - ./mongo_data:/data/db
+      environment:
+      - MONGO_INITDB_ROOT_USERNAME=edward
+      - MONGO_INITDB_ROOT_PASSWORD=devka`
