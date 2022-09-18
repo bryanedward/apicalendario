@@ -23,6 +23,7 @@
     "/api": {
       "post": {
         "tags": ["users"],
+        "summary": "login user",
         "requestBody": {
           "content": {
             "application/json": {
@@ -52,8 +53,7 @@
     "/api/nuevo": {
       "post": {
         "tags": ["users"],
-        "summary": "adds an inventory item",
-        "description": "Adds an item to the system",
+        "summary": "create new user",
         "responses": {
           "200": {
             "description": "user create"
@@ -84,7 +84,7 @@
           }
         ],
         "tags": ["events"],
-        "summary": "searches inventory",
+        "summary": "get events",
         "operationId": "searchInventory",
         "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
         "responses": {
@@ -103,6 +103,35 @@
           },
           "400": {
             "description": "object with the key error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["events"],
+        "summary": "create events",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-token",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzI2NTM2M2MzYTZjMjM3YWM2MTI0OGUiLCJuYW1lIjoiZWR3YXJkIiwiaWF0IjoxNjYzNDU2MDk5LCJleHAiOjE2NjM0NjMyOTl9.10sJwnR4PGS7rLaMVb3ByT9SjwgQID155PntGqjcPp4"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "create events",
+          "content": {
+            "application/bosy": {
+              "schema": {
+                "$ref": "#/components/schemas/Events"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "events create"
           }
         }
       }
