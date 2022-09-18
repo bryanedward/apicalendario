@@ -10,7 +10,6 @@ const getEventos = async (req, res) => {
 };
 
 const crearEvento = async (req, res) => {
-  console.log(req.body);
   try {
     const result = new event(req.body);
     result.user = req.uid;

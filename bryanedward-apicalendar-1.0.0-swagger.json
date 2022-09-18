@@ -1,0 +1,156 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "https://apicalendardevka.herokuapp.com/"
+    }
+  ],
+  "info": {
+    "description": "This is a API for the app calendar",
+    "version": "1.0.0",
+    "title": "API CALENDAR"
+  },
+  "tags": [
+    {
+      "name": "users"
+    },
+    {
+      "name": "events"
+    }
+  ],
+  "paths": {
+    "/api": {
+      "post": {
+        "tags": ["users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "edward"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "edward@gmail.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "find a user"
+          }
+        }
+      }
+    },
+    "/api/nuevo": {
+      "post": {
+        "tags": ["users"],
+        "summary": "adds an inventory item",
+        "description": "Adds an item to the system",
+        "responses": {
+          "200": {
+            "description": "user create"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          },
+          "description": "Object create user"
+        }
+      }
+    },
+    "/eventos": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-token",
+            "schema": {
+              "type": "string",
+              "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzI2NTM2M2MzYTZjMjM3YWM2MTI0OGUiLCJuYW1lIjoiZWR3YXJkIiwiaWF0IjoxNjYzNDU2MDk5LCJleHAiOjE2NjM0NjMyOTl9.10sJwnR4PGS7rLaMVb3ByT9SjwgQID155PntGqjcPp4"
+            }
+          }
+        ],
+        "tags": ["events"],
+        "summary": "searches inventory",
+        "operationId": "searchInventory",
+        "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "responses": {
+          "200": {
+            "description": "get events from user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Events"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "object with the key error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Users": {
+        "type": "object",
+        "required": ["name", "email", "password"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "bryan"
+          },
+          "email": {
+            "type": "string",
+            "example": "bryan@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "bryan"
+          }
+        }
+      },
+      "Events": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "reunion familiar"
+          },
+          "notes": {
+            "type": "string",
+            "example": "comprar vasos"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2012-12-12T00:00:00.000Z"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2012-12-12T00:00:00.000Z"
+          }
+        }
+      }
+    }
+  }
+}
